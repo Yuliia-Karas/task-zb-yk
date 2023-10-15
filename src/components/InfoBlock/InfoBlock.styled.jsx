@@ -9,6 +9,7 @@ export const Cards = styled.ul`
 export const Image = styled.img`
   width:630px;
   height:400px;
+  padding-bottom: 20px;
 `;
 
 export const CardsHeader = styled.h2`
