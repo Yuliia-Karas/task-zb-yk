@@ -7,7 +7,11 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/Signup/SignUp";
 import Layout from "./components/Layout/Layout";
 
+
+
 function App() {
+
+  
   return (
     <>
       <Routes>

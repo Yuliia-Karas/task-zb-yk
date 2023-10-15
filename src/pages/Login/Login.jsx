@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/operations";
 
 import image5 from "../../assets/images/Component5.jpg";
 import {
@@ -9,58 +11,47 @@ import {
   Input,
   GoldText,
   SignInBtn,
-
   ForgotPassword,
   CenterBlock,
 } from "./Login.styled";
 
 export default function Login() {
-  const [inputValue1, setInputValue1] = useState("");
-  const [inputValue2, setInputValue2] = useState("");
+  const [pageType, setPageType] = useState("login");
+  const loginEmailRef = useRef();
+  const loginPasswordRef = useRef();
 
-  const handleInputChange1 = (event) => {
-    setInputValue1(event.target.value);
+    
+    const dispatch = useDispatch();
+
+    const handleLogin = () => {
+        const email = loginEmailRef.current.value;
+        const password = loginPasswordRef.current.value;
+        dispatch(logIn({ email, password }));
   };
 
-  const handleInputChange2 = (event) => {
-    setInputValue2(event.target.value);
-  };
+  if (pageType === "login")
+    return (
+      <LoginContainer>
+        <img src={image5} alt="Login image"></img>
+        <LoginData>
+          <LoginHeader>Login</LoginHeader>
+          <Label>
+            Email
+                    <Input ref={loginEmailRef} type="email" placeholder="Email" />
+          </Label>
 
-  const handleButtonClick = () => {
-   
-    console.log("Значення input1:", inputValue1);
-    console.log("Значення input2:", inputValue2);
-  };
-  return (
-    <LoginContainer>
-      <img src={image5} alt="Login image"></img>
-      <LoginData>
-        <LoginHeader>Login</LoginHeader>
-        <Label>
-          Email
-          <Input
-            type="text"
-            placeholder="Email"
-            value={inputValue1}
-            onChange={handleInputChange1}
-          />
-        </Label>
-        <Label>
-          Password
-          <Input
-            type="text"
-            placeholder="Password"
-            value={inputValue2}
-            onChange={handleInputChange2}
-          />
-        </Label>
-        <ForgotPassword>Forgot password?</ForgotPassword>
-        <SignInBtn onClick={handleButtonClick}>Sign In</SignInBtn>
+          <Label>
+            Password
+                    <Input ref={loginPasswordRef} type="password" placeholder="Password" />
+          </Label>
+          <ForgotPassword>Forgot password?</ForgotPassword>
+          <SignInBtn onClick={handleLogin}>Sign In</SignInBtn>
 
-        <CenterBlock>
-          Don’t have account? <GoldText>Sign Up</GoldText>
-        </CenterBlock>
-      </LoginData>
-    </LoginContainer>
-  );
+          <CenterBlock>
+            Don’t have account?{" "}
+            <GoldText onClick={() => setPageType("register")}>Sign Up</GoldText>
+          </CenterBlock>
+        </LoginData>
+      </LoginContainer>
+    );
 }

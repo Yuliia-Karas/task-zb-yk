@@ -7,12 +7,30 @@ import {
   SignUpBtn,
 } from "./Layout.styled";
 
+import { useAuth } from "../../hooks/index";
+
 export default function Layout() {
-  return (
+    const { isLoggedIn } = useAuth();
+   
+    if(isLoggedIn) {return (
+      <nav>
+        <Header>
+          <Logo to="/">My Logo</Logo>
+          <ButtonContainer>    
+            <NavLink to="/signup">
+              <SignUpBtn type="button"> Sign Out</SignUpBtn>
+            </NavLink>
+          </ButtonContainer>
+        </Header>
+        <Outlet />
+      </nav>
+    );
+    } else {
+     return (
     <div>
       <nav>
           <Header>
-            <Logo to="/">My Logo</Logo>
+                  <Logo to="/">My Logo</Logo>
             <ButtonContainer>
               <NavLink to="/login">
                 <LogInBtn type="button"> Log In</LogInBtn>
@@ -26,5 +44,8 @@ export default function Layout() {
         <Outlet />
       </nav>
     </div>
-  );
+  );   
+    }
+    
+  
 }
