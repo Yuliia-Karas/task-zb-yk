@@ -1,8 +1,8 @@
-// import React from 'react'
 import { NavLink, Outlet } from "react-router-dom";
 import {
   Header,
-  ButtonContainer, Logo,
+  ButtonContainer,
+  Logo,
   LogInBtn,
   SignUpBtn,
 } from "./Layout.styled";
@@ -10,13 +10,14 @@ import {
 import { useAuth } from "../../hooks/index";
 
 export default function Layout() {
-    const { isLoggedIn } = useAuth();
-   
-    if(isLoggedIn) {return (
+  const { isLoggedIn } = useAuth();
+
+  if (isLoggedIn) {
+    return (
       <nav>
         <Header>
           <Logo to="/">My Logo</Logo>
-          <ButtonContainer>    
+          <ButtonContainer>
             <NavLink to="/signup">
               <SignUpBtn type="button"> Sign Out</SignUpBtn>
             </NavLink>
@@ -25,27 +26,22 @@ export default function Layout() {
         <Outlet />
       </nav>
     );
-    } else {
-     return (
-    <div>
+  } else {
+    return (
       <nav>
-          <Header>
-                  <Logo to="/">My Logo</Logo>
-            <ButtonContainer>
-              <NavLink to="/login">
-                <LogInBtn type="button"> Log In</LogInBtn>
-              </NavLink>
-              <NavLink to="/signup">
-                <SignUpBtn type="button"> Sign Up</SignUpBtn>
-              </NavLink>
-            </ButtonContainer>
-          </Header>
-
+        <Header>
+          <Logo to="/">My Logo</Logo>
+          <ButtonContainer>
+            <NavLink to="/login">
+              <LogInBtn type="button"> Log In</LogInBtn>
+            </NavLink>
+            <NavLink to="/signup">
+              <SignUpBtn type="button"> Sign Up</SignUpBtn>
+            </NavLink>
+          </ButtonContainer>
+        </Header>
         <Outlet />
       </nav>
-    </div>
-  );   
-    }
-    
-  
+    );
+  }
 }

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const LoginContainer = styled.nav`
@@ -43,7 +44,7 @@ export const Input = styled.input`
   background-color: var(--background-title-color);
 `;
 
-export const GoldText = styled.span`
+export const GoldText = styled(NavLink)`
   color: var(--accent-color);
   font-family: Lato;
   font-size: 14px;

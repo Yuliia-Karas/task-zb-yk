@@ -1,5 +1,3 @@
-// import React from 'react'
-
 import { MainContainer, Content, Header, Text, MainBtn } from "./Main.styled";
 import InfoBlock from "../../components/InfoBlock/InfoBlock";
 

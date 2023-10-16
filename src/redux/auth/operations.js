@@ -1,13 +1,10 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// axios.defaults.baseURL = "https://mockapi.io/projects/652c3d82d0d1df5273ef4a1b";
-axios.defaults.baseURL= 'https://652c3d82d0d1df5273ef4a1a.mockapi.io/users'
-
-
+axios.defaults.baseURL = "https://652c3d82d0d1df5273ef4a1a.mockapi.io/users";
 
 const setAuthHeader = (token) => {
-  axios.defaults.headers.common.Authorization = `Bearer${token}`;
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 export const register = createAsyncThunk(

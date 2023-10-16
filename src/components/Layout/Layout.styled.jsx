@@ -18,7 +18,6 @@ export const Logo = styled(NavLink)`
   color: var(--white-color);
   font-family: Merriweather;
   font-size: 28px;
-  font-style: normal;
   font-weight: 400;
   line-height: 1.21;
 
@@ -54,7 +53,6 @@ export const SignUpBtn = styled.button`
 
   width: 160px;
   padding: 11px 0px;
-
   border-radius: 5px;
   background: var(--accent-color);
   

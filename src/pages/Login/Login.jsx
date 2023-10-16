@@ -1,7 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
-
 import image5 from "../../assets/images/Component5.jpg";
 import {
   LoginContainer,
@@ -16,20 +15,17 @@ import {
 } from "./Login.styled";
 
 export default function Login() {
-  const [pageType, setPageType] = useState("login");
   const loginEmailRef = useRef();
   const loginPasswordRef = useRef();
 
-    
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleLogin = () => {
-        const email = loginEmailRef.current.value;
-        const password = loginPasswordRef.current.value;
-        dispatch(logIn({ email, password }));
+  const handleLogin = () => {
+    const email = loginEmailRef.current.value;
+    const password = loginPasswordRef.current.value;
+    dispatch(logIn({ email, password }));
   };
 
-  if (pageType === "login")
     return (
       <LoginContainer>
         <img src={image5} alt="Login image"></img>
@@ -37,19 +33,22 @@ export default function Login() {
           <LoginHeader>Login</LoginHeader>
           <Label>
             Email
-                    <Input ref={loginEmailRef} type="email" placeholder="Email" />
+            <Input ref={loginEmailRef} type="email" placeholder="Email" />
           </Label>
 
           <Label>
             Password
-                    <Input ref={loginPasswordRef} type="password" placeholder="Password" />
+            <Input
+              ref={loginPasswordRef}
+              type="password"
+              placeholder="Password"
+            />
           </Label>
           <ForgotPassword>Forgot password?</ForgotPassword>
           <SignInBtn onClick={handleLogin}>Sign In</SignInBtn>
 
           <CenterBlock>
-            Don’t have account?{" "}
-            <GoldText onClick={() => setPageType("register")}>Sign Up</GoldText>
+            Don’t have account? <GoldText to="/signup">Sign Up</GoldText>
           </CenterBlock>
         </LoginData>
       </LoginContainer>
