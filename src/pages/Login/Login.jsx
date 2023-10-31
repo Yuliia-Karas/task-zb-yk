@@ -24,6 +24,9 @@ export default function Login() {
     const email = loginEmailRef.current.value;
     const password = loginPasswordRef.current.value;
     dispatch(logIn({ email, password }));
+
+    loginEmailRef.current.value = "";
+    loginPasswordRef.current.value = "";
   };
 
     return (

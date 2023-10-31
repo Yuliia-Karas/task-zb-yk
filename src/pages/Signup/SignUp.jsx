@@ -26,6 +26,7 @@ export default function SignUp() {
     const email = registerEmailRef.current.value;
     const password = registerPasswordRef.current.value;
     const name = registerNameRef.current.value;
+    console.log({ registerPasswordRef});
     dispatch(register({ email, password, name }));
 
     registerEmailRef.current.value = "";
