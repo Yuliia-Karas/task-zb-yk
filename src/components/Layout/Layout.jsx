@@ -10,11 +10,8 @@ import {
 import { useAuth } from "../../hooks/index";
 
 export default function Layout() {
-  const { isLoggedIn, user } = useAuth();
-    // const { isLoggedIn, user:{name} } = useAuth();
-
-  console.log(isLoggedIn, user);
-
+  const { isLoggedIn } = useAuth();
+    
   if (isLoggedIn) {
     return (
       <nav>
@@ -22,9 +19,6 @@ export default function Layout() {
           <Logo to="/">My Logo</Logo>
           <ButtonContainer>
             <NavLink to="/signup">
-
-              {/* <div>Hello{ name}</div> */}
-
               <SignUpBtn type="button"> Sign Out</SignUpBtn>
             </NavLink>
           </ButtonContainer>

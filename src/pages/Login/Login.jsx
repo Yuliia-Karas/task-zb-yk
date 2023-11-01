@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
+import { useAuth } from "../../hooks/index";
 import image5 from "../../assets/images/Component5.jpg";
 import {
   LoginContainer,
@@ -15,45 +16,50 @@ import {
 } from "./Login.styled";
 
 export default function Login() {
-  const loginEmailRef = useRef();
-  const loginPasswordRef = useRef();
+  const { isAuthError } = useAuth();
 
   const dispatch = useDispatch();
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleLogin = () => {
-    const email = loginEmailRef.current.value;
-    const password = loginPasswordRef.current.value;
     dispatch(logIn({ email, password }));
-
-    loginEmailRef.current.value = "";
-    loginPasswordRef.current.value = "";
   };
 
-    return (
-      <LoginContainer>
-        <img src={image5} alt="Login image"></img>
-        <LoginData>
-          <LoginHeader>Login</LoginHeader>
-          <Label>
-            Email
-            <Input ref={loginEmailRef} type="email" placeholder="Email" />
-          </Label>
+  return (
+    <LoginContainer>
+      <img src={image5} alt="Login image"></img>
+      <LoginData>
+        <LoginHeader>Login</LoginHeader>
+        <Label>
+          Email
+          <Input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </Label>
 
-          <Label>
-            Password
-            <Input
-              ref={loginPasswordRef}
-              type="password"
-              placeholder="Password"
-            />
-          </Label>
-          <ForgotPassword>Forgot password?</ForgotPassword>
-          <SignInBtn onClick={handleLogin}>Sign In</SignInBtn>
+        <Label>
+          Password
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </Label>
 
-          <CenterBlock>
-            Don’t have account? <GoldText to="/signup">Sign Up</GoldText>
-          </CenterBlock>
-        </LoginData>
-      </LoginContainer>
-    );
+        <ForgotPassword>Forgot password?</ForgotPassword>
+
+        {isAuthError && <div>email or password is wrong</div>}
+        <SignInBtn onClick={handleLogin}>Sign In</SignInBtn>
+
+        <CenterBlock>
+          Don’t have account? <GoldText to="/signup">Sign Up</GoldText>
+        </CenterBlock>
+      </LoginData>
+    </LoginContainer>
+  );
 }

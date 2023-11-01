@@ -1,8 +1,10 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
-// axios.defaults.baseURL = "https://652c3d82d0d1df5273ef4a1a.mockapi.io";
+
 axios.defaults.baseURL = "https://backend-zb-yk.onrender.com";
+// axios.defaults.baseURL = "http://localhost:3000";
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -13,8 +15,10 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post("/api/auth/register", credentials);
+      Cookies.set("token", res.data.token, { expires: 1, path: "" });
 
-      setAuthHeader(res.data.token);
+      // setAuthHeader(res.data.token);
+
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

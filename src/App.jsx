@@ -1,4 +1,8 @@
 import "./App.css";
+import { useEffect } from "react";
+import { useAuth } from "./hooks/index";
+import { useNavigate } from "react-router-dom";
+
 
 import { Routes, Route } from "react-router-dom";
 
@@ -8,6 +12,18 @@ import SignUp from "./pages/Signup/SignUp";
 import Layout from "./components/Layout/Layout";
 
 function App() {
+
+  const {
+    isLoggedIn } = useAuth();
+  
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, [isLoggedIn]);
+
   return (
       <Routes>
         <Route path="/" element={<Layout />}>
