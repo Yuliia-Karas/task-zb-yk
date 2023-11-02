@@ -2,8 +2,6 @@ import "./App.css";
 import { useEffect } from "react";
 import { useAuth } from "./hooks/index";
 import { useNavigate } from "react-router-dom";
-
-
 import { Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main/Main";
@@ -12,27 +10,26 @@ import SignUp from "./pages/Signup/SignUp";
 import Layout from "./components/Layout/Layout";
 
 function App() {
+  const {  token } = useAuth();
 
-  const {
-    isLoggedIn } = useAuth();
-  
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/');
+    if (token) {
+      navigate("/");
     }
-  }, [isLoggedIn]);
+  }, [token,navigate]);
+
 
   return (
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Main />} /> 
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="*" element={<Main />} />
-        </Route>
-      </Routes>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="*" element={<Main />} />
+      </Route>
+    </Routes>
   );
 }
 

@@ -41,6 +41,8 @@ export default function SignUp() {
     registerNameRef.current.value = "";
   };
 
+
+
   return (
     <LoginContainer>
       <img src={image5} alt="Login image"></img>

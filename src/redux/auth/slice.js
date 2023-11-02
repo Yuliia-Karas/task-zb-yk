@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { register, logIn } from "./operations";
+import Cookies from "js-cookie";
 
 const initialState = {
   user: { name: null, email: null },
-  token: null,
-  isLoggedIn: false,
+  token: Cookies.get("token"),
   isAuthError:false,
-  // isRefreshing:false,
 };
 
 const authSlice = createSlice({
@@ -16,7 +15,6 @@ const authSlice = createSlice({
     [register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.isLoggedIn = true;
       state.isAuthError = false;
     },
     [register.rejected](state,) {
@@ -25,16 +23,10 @@ const authSlice = createSlice({
     [logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.isLoggedIn = true;
     },
     [logIn.rejected](state, ) {
       state.isAuthError = true;
     }
-    // [logOut.fulfilled](state) {
-    //   state.user = { name: null, email: null },
-    //     state.token = null;
-    //   state.isLoggedIn = false;
-    // },
   },
 });
 

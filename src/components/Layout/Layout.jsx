@@ -10,9 +10,9 @@ import {
 import { useAuth } from "../../hooks/index";
 
 export default function Layout() {
-  const { isLoggedIn } = useAuth();
+  const { token } = useAuth();
     
-  if (isLoggedIn) {
+  if (token) {
     return (
       <nav>
         <Header>
