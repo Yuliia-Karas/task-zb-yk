@@ -10,7 +10,7 @@ import SignUp from "./pages/Signup/SignUp";
 import Layout from "./components/Layout/Layout";
 
 function App() {
-  const {  token } = useAuth();
+  const { token } = useAuth();
 
   const navigate = useNavigate();
 
@@ -18,8 +18,7 @@ function App() {
     if (token) {
       navigate("/");
     }
-  }, [token,navigate]);
-
+  }, [token, navigate]);
 
   return (
     <Routes>

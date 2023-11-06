@@ -28,6 +28,7 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post("/api/auth/login", credentials);
+      Cookies.set("token", res.data.token)
 
       setAuthHeader(res.data.token);
       return res.data;
@@ -36,5 +37,17 @@ export const logIn = createAsyncThunk(
     }
   }
 );
+
+// Utility to remove JWT
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
+
+export const logOut = createAsyncThunk(
+  "auth/logout",  () => {
+    Cookies.remove("token");
+    // After a successful logout, remove the token from the HTTP header
+    clearAuthHeader();  
+});
 
 

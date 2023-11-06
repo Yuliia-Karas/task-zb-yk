@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn } from "./operations";
+import { register, logIn, logOut } from "./operations";
 import Cookies from "js-cookie";
 
 const initialState = {
@@ -17,17 +17,23 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isAuthError = false;
     },
-    [register.rejected](state,) {
+    [register.rejected](state) {
       state.isAuthError = true;
     },
     [logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
-    [logIn.rejected](state, ) {
+    [logIn.rejected](state) {
       state.isAuthError = true;
-    }
+    },
+    [logOut.fulfilled](state) {
+    state.user = { name: null, email: null };
+    state.token = null;
+    state.isLoggedIn = false;
   },
+  },
+  
 });
 
 export const authReducer = authSlice.reducer;

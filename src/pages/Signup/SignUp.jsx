@@ -7,16 +7,16 @@ import { useAuth } from "../../hooks/index";
 
 import image5 from "../../assets/images/Component5.jpg";
 import {
-  LoginContainer,
   LoginHeader,
-  LoginData,
+  LoginContainer,
   Label,
   Input,
   SignInBtn,
-  ForgotPassword,
-  CenterBlock,
   GoldText,
+  Image,
 } from "../Login/Login.styled";
+
+import { SignUpData, HaveAccountBlock } from "../Signup/SignUp.styled";
 
 export default function SignUp() {
   const [password, setPassword] = useState("");
@@ -41,12 +41,10 @@ export default function SignUp() {
     registerNameRef.current.value = "";
   };
 
-
-
   return (
     <LoginContainer>
-      <img src={image5} alt="Login image"></img>
-      <LoginData>
+      <Image src={image5} alt="Login image"></Image>
+      <SignUpData>
         <LoginHeader>Sign Up</LoginHeader>
 
         <Label>
@@ -78,13 +76,13 @@ export default function SignUp() {
         <div style={{ width: 150 }}>
           <PasswordStrengthBar password={password} />
         </div>
-        <ForgotPassword>Enter your password</ForgotPassword>
+
         {isAuthError && <div>name, email or password is wrong</div>}
         <SignInBtn onClick={handleSignup}>Sign Up</SignInBtn>
-        <CenterBlock>
+        <HaveAccountBlock>
           Do you already have account? <GoldText to="/login">Sign In</GoldText>
-        </CenterBlock>
-      </LoginData>
+        </HaveAccountBlock>
+      </SignUpData>
     </LoginContainer>
   );
 }

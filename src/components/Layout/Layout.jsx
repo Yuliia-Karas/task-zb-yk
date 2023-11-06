@@ -9,8 +9,12 @@ import {
 
 import { useAuth } from "../../hooks/index";
 
+import { useDispatch } from "react-redux";
+import { logOut } from "../../redux/auth/operations";
+
 export default function Layout() {
   const { token } = useAuth();
+   const dispatch = useDispatch();
     
   if (token) {
     return (
@@ -19,7 +23,10 @@ export default function Layout() {
           <Logo to="/">My Logo</Logo>
           <ButtonContainer>
             <NavLink to="/signup">
-              <SignUpBtn type="button"> Sign Out</SignUpBtn>
+              <SignUpBtn type="button" onClick={() => dispatch(logOut())}>
+                {" "}
+                Sign Out
+              </SignUpBtn>
             </NavLink>
           </ButtonContainer>
         </Header>

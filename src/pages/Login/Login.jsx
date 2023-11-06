@@ -13,6 +13,7 @@ import {
   SignInBtn,
   ForgotPassword,
   CenterBlock,
+  Image,
 } from "./Login.styled";
 
 export default function Login() {
@@ -28,7 +29,7 @@ export default function Login() {
 
   return (
     <LoginContainer>
-      <img src={image5} alt="Login image"></img>
+      <Image src={image5} alt="Login image"></Image>
       <LoginData>
         <LoginHeader>Login</LoginHeader>
         <Label>

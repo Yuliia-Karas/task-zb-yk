@@ -3,8 +3,26 @@ import styled from "styled-components";
 
 export const LoginContainer = styled.nav`
   display: flex;
-  align-items:center;
-  gap:100px;
+  flex-direction: column;
+  gap: 30px;
+
+  @media (min-width: 768px) {
+    align-items: center;
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    align-items: center;
+    flex-direction: row;
+    gap: 50px;
+  }
+
+  @media (min-width: 1440px) {
+    align-items: center;
+    flex-direction: row;
+    gap: 100px;
+  }
 `;
 
 export const LoginHeader = styled.h2`
@@ -19,7 +37,7 @@ export const LoginData = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap:20px;
+  gap: 20px;
 `;
 
 export const Label = styled.div`
@@ -33,15 +51,18 @@ export const Label = styled.div`
   line-height: 2.43;
 `;
 export const Input = styled.input`
-  width: 350px;
+  width: 300px;
   padding: 14px 20px 12px 20px;
   justify-content: center;
   align-items: center;
   display: block;
-  margin: 0 auto;
   border-radius: 5px;
   border: 2px solid var(--background-title-color);
   background-color: var(--background-title-color);
+
+  @media (min-width: 1024px) {
+    width: 350px;
+  }
 `;
 
 export const GoldText = styled(NavLink)`
@@ -53,11 +74,11 @@ export const GoldText = styled(NavLink)`
 `;
 
 export const ForgotPassword = styled(GoldText)`
-  margin-left: auto; 
+  margin-left: 190px;
 `;
 
 export const SignInBtn = styled.button`
-  width: 350px;
+  width: 300px;
   height: 44px;
   flex-shrink: 0;
   border: none;
@@ -71,6 +92,10 @@ export const SignInBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   line-height: 1.38;
+
+  @media (min-width: 1024px) {
+    width: 350px;
+  }
 `;
 
 export const BlackText = styled.p`
@@ -83,5 +108,18 @@ export const BlackText = styled.p`
 `;
 
 export const CenterBlock = styled(BlackText)`
-  margin:0 auto; 
+ margin-left:80px;
+ @media (min-width: 768px) {
+    margin: 0 auto;
+  }
+`;
+
+export const Image = styled.img`
+  @media (min-width: 768px) {
+    max-width: 56%;
+  }
+  @media (min-width: 1440px) {
+    max-width: 890px;
+    height: 943px;
+  }
 `;
