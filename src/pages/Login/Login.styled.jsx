@@ -9,13 +9,13 @@ export const LoginContainer = styled.nav`
   @media (min-width: 768px) {
     align-items: center;
     flex-direction: row;
-    gap: 24px;
+    gap: 8px;
   }
 
   @media (min-width: 1024px) {
     align-items: center;
     flex-direction: row;
-    gap: 50px;
+    gap: 40px;
   }
 
   @media (min-width: 1440px) {
@@ -38,6 +38,7 @@ export const LoginData = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
+  padding: 0 10px;
 `;
 
 export const Label = styled.div`

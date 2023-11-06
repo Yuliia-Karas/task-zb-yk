@@ -5,6 +5,7 @@ export const SignUpData = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+  padding: 0 10px;
 `;
 
 export const BlackText = styled.p`
